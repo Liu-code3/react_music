@@ -9,7 +9,8 @@ export const HeaderWrapper = styled.div`
     .content {
         display: flex;
         justify-content: space-between;
-
+        // 使用styled-components的Theme组件全局注入
+        ${props => props.theme.mixin.wrap1}
     }
     
     .divider  {
@@ -35,28 +36,28 @@ export const HeaderLeft = styled.div`
 
         .select-item {
             position: relative;
-
+            
             a {
                 display: block;
                 padding: 0 20px;
                 color: #ccc;
             }
 
-            :last-of-type a {
+            &:last-of-type a {
                 position: relative;
-
-                ::after {
-                    position: absolute;
+                &::after {
                     content: '';
+                    position: absolute;
                     width: 28px;
                     height: 19px;
-                    background-image: url('../../assets/img/sprite_01.png');
+                    background-image: url('/src/assets/img/sprite_01.png');
                     background-position: -190px 0;
                     top: 20px;
                     right: -15px;
                 }
             }
 
+            
             &:hover a,
             .active {
                 color: #fff;
