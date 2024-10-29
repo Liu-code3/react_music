@@ -1,8 +1,10 @@
 import type { FC, ReactNode } from 'react'
 import HeaderTitle from '@/assets/data/header-titles.json'
+import { SearchOutlined } from '@ant-design/icons'
+import { Input } from 'antd'
 import { memo } from 'react'
 import { NavLink } from 'react-router-dom'
-import { HeaderLeft, HeaderWrapper } from './style.ts'
+import { HeaderLeft, HeaderRight, HeaderWrapper } from './style.ts'
 
 interface TitleType {
   type: string
@@ -23,6 +25,7 @@ const AppHeader: FC<IProps> = () => {
           className={({ isActive }) => (isActive ? 'active' : '')}
         >
           {item.title}
+          <i className="icon sprite_01"></i>
         </NavLink>
       )
     }
@@ -39,16 +42,26 @@ const AppHeader: FC<IProps> = () => {
             网易云音乐
           </a>
           <div className="select-list">
-            { HeaderTitle.map((item) => {
+            {HeaderTitle.map((item) => {
               return (
                 <div className="select-item" key={item.title}>
                   {showItem(item)}
                 </div>
               )
-            }) }
+            })}
           </div>
         </HeaderLeft>
+        <HeaderRight>
+          <Input
+            className="search"
+            prefix={<SearchOutlined />}
+            placeholder="音乐/视频/电台/用户"
+          />
+          <span className="center">创作者中心</span>
+          <span>登录</span>
+        </HeaderRight>
       </div>
+      <div className="divider"></div>
     </HeaderWrapper>
   )
 }

@@ -83,9 +83,9 @@ export const HeaderRight = styled.div`
   display: flex;
   align-items: center;
   color: #787878;
-  font-size: 12px;
-
-  > .search {
+  font-size: 12px; 
+        
+  .search {
     width: 158px;
     height: 32px;
     border-radius: 16px;
@@ -105,5 +105,12 @@ export const HeaderRight = styled.div`
     border: 1px solid #666;
     border-radius: 16px;
     margin: 0 16px;
+    cursor: pointer;
+    transition: all .8s;
+  
+    &:hover {
+     color: #ccc;
+     border-color: #ccc;
+    }
   }
 `
