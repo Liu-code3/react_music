@@ -1,18 +1,17 @@
 import type { RouteObject } from 'react-router-dom'
-import { lazy } from 'react'
-import { createHashRouter, Navigate, RouterProvider } from 'react-router-dom'
-
-const Discover = lazy(() => import('@/views/discover'))
-const Mine = lazy(() => import('@/views/mine'))
-const Focus = lazy(() => import('@/views/focus'))
-const DownLoad = lazy(() => import('@/views/download'))
-
-const Album = lazy(() => import('@/views/discover/c-views/album'))
-const Artist = lazy(() => import('@/views/discover/c-views/artist'))
-const Djradio = lazy(() => import('@/views/discover/c-views/djradio'))
-const Ranking = lazy(() => import('@/views/discover/c-views/ranking'))
-const Recommend = lazy(() => import('@/views/discover/c-views/recommend'))
-const Songs = lazy(() => import('@/views/discover/c-views/songs'))
+import { Navigate } from 'react-router-dom'
+import {
+  Album,
+  Artist,
+  Discover,
+  Djradio,
+  DownLoad,
+  Focus,
+  Mine,
+  Ranking,
+  Recommend,
+  Songs
+} from './lazyComponent.tsx'
 
 /**
  * 相对路径，子路由会相对于父路由自动拼接
@@ -89,10 +88,4 @@ const routes: RouteObject[] = [
   }
 ]
 
-const router = createHashRouter(routes)
-
-function Routes() {
-  return <RouterProvider router={router}></RouterProvider>
-}
-
-export default Routes
+export default routes
