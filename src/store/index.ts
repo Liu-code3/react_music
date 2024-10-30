@@ -1,7 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
+import recommendReducer from './modules/recommend.ts'
 
 const store = configureStore({
-  reducer: {}
+  reducer: {
+    recommend: recommendReducer
+  }
 })
 
 export type RootState = ReturnType<typeof store.getState>
