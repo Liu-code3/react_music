@@ -32,7 +32,8 @@ const TopBanner: FC = () => {
       && `${banners[currentIndex].imageUrl}?imageView&blur=40x20`
 
   return (
-    <BannerWrapper bgImage={bgImage}>
+    // $bgImage作为自定义属性传递到了 DOM 元素 使用 "transient props" 方法 这样它不会被传递到实际的 DOM 元素上。
+    <BannerWrapper $bgImage={bgImage}>
       <div className="banner wrap-v2" ref={divRef}>
         <BannerLeft>
           <Carousel
