@@ -1,6 +1,8 @@
 import type { FC, ReactNode } from 'react'
 import { ItemWrapper } from '@/components/SectionItem/style.ts'
+import { getImageSize } from '@/utils/handleImgUrl.ts'
 import { memo } from 'react'
+import {handlePlayCount} from "@/utils/handlePlayCount.ts";
 
 interface IProps {
   children?: ReactNode
@@ -12,12 +14,12 @@ const SectionItem: FC<IProps> = (props) => {
   return (
     <ItemWrapper>
       <div className="cover-top">
-        <img src={info.picUrl} alt="" />
+        <img src={getImageSize(info.picUrl, 140)} alt="" />
         <div className="cover sprite_cover">
           <div className="info sprite_cover">
             <span>
               <i className="sprite_icon headset"></i>
-              {info.playCount}
+              {handlePlayCount(info.playCount)}
             </span>
             <i className="sprite_icon play"></i>
           </div>
