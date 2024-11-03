@@ -12,8 +12,13 @@ function getNewAlbum() {
   return requset.get('/album/newest')
 }
 
+function getPlayListDetail(id: number) {
+  return requset.get('/playlist/detail', { params: { id } })
+}
+
 export {
   getHotRecommend,
   getNewAlbum,
+  getPlayListDetail,
   getTopBanner
 }

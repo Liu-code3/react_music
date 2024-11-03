@@ -1,17 +1,19 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { getHotRecommend, getNewAlbum, getTopBanner } from '@/api/recommend.ts'
+import { getHotRecommend, getNewAlbum, getPlayListDetail, getTopBanner } from '@/api/recommend.ts'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 interface IRecommendState {
   banners: any[]
   hotRecommends: any[]
   newAlbums: any[]
+  rankings: any[]
 }
 
 const initialState: IRecommendState = {
   banners: [],
   hotRecommends: [],
-  newAlbums: []
+  newAlbums: [],
+  rankings: []
 }
 
 const recommendSlice = createSlice({
@@ -27,9 +29,17 @@ const recommendSlice = createSlice({
     changeNewAlbumsAction(state, { payload }: PayloadAction<any[]>) {
       state.newAlbums = payload
     },
+    changeRankinsAction(state, { payload }: PayloadAction<any[]>) {
+      state.rankings = payload
+    }
   }
 })
-export const { changeBannersAction, changeHotRecommendAction, changeNewAlbumsAction } = recommendSlice.actions
+export const {
+  changeBannersAction,
+  changeHotRecommendAction,
+  changeNewAlbumsAction,
+  changeRankinsAction
+} = recommendSlice.actions
 export default recommendSlice.reducer
 
 // 因为以下异步请求没有传递蚕素 所以只使用了一个中间件来发送
@@ -54,4 +64,26 @@ const fetchRecommendDataAction = createAsyncThunk(
     })
   }
 )
-export { fetchRecommendDataAction }
+
+const rankingMap = {
+  upRanking: 19723756,
+  newRanking: 3779629,
+  originRanking: 2884035
+}
+const fetchRankingDataAction = createAsyncThunk(
+  'ranking',
+  (_, { dispatch }) => {
+    // 所有榜单数据
+    const promises: Promise<any>[] = []
+    let key: keyof typeof rankingMap
+    for (key in rankingMap) {
+      const id = rankingMap[key]
+      promises.push(getPlayListDetail(id))
+    }
+    Promise.all(promises).then((res) => {
+      const playlist = res.map(item => item.playlist)
+      dispatch(changeRankinsAction(playlist))
+    })
+  }
+)
+export { fetchRankingDataAction, fetchRecommendDataAction }

@@ -1,10 +1,11 @@
 import type { FC } from 'react'
 import { useAppDispatch } from '@/hooks/app.ts'
-import { fetchRecommendDataAction } from '@/store/modules/recommend.ts'
+import { fetchRankingDataAction, fetchRecommendDataAction } from '@/store/modules/recommend.ts'
 import { memo, useEffect } from 'react'
 import HotRecommend from './components/HotRecommend'
 import NewAlbum from './components/NewAlbum'
 import TopBanner from './components/TopBanner'
+import TopRanking from './components/TopRanking'
 import { RecommendLeft, RecommendRight, RecommendSection } from './style.ts'
 
 const Recommend: FC = () => {
@@ -12,6 +13,7 @@ const Recommend: FC = () => {
 
   useEffect(() => {
     dispatch(fetchRecommendDataAction())
+    dispatch(fetchRankingDataAction())
   }, [])
 
   return (
@@ -21,6 +23,7 @@ const Recommend: FC = () => {
         <RecommendLeft>
           <HotRecommend />
           <NewAlbum />
+          <TopRanking />
         </RecommendLeft>
         <RecommendRight></RecommendRight>
       </RecommendSection>
