@@ -32,20 +32,26 @@ const recommendSlice = createSlice({
 export const { changeBannersAction, changeHotRecommendAction, changeNewAlbumsAction } = recommendSlice.actions
 export default recommendSlice.reducer
 
+// 因为以下异步请求没有传递蚕素 所以只使用了一个中间件来发送
+// 应该避免过多的异步请求
+// 建议不要使用async函数 使用await来同步代码 这样中间件就会串行运行
 const fetchRecommendDataAction = createAsyncThunk(
   'fetchdata',
-  async (_, { dispatch }) => {
+  (_, { dispatch }) => {
     // 1，顶部的banners
-    const BannersRes: any = await getTopBanner()
-    dispatch(changeBannersAction(BannersRes.banners))
+    getTopBanner().then((res: any) => {
+      dispatch(changeBannersAction(res.banners))
+    })
 
     // 2.热门推荐
-    const hotRecRes: any = await getHotRecommend()
-    dispatch(changeHotRecommendAction(hotRecRes.result))
+    getHotRecommend().then((res: any) => {
+      dispatch(changeHotRecommendAction(res.result))
+    })
 
     // 3.新碟上架
-    const newAlbumRes: any = await getNewAlbum()
-    dispatch(changeNewAlbumsAction(newAlbumRes.weekData))
+    getNewAlbum().then((res: any) => {
+      dispatch(changeNewAlbumsAction(res.albums))
+    })
   }
 )
 export { fetchRecommendDataAction }
