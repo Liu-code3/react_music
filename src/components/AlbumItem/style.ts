@@ -27,15 +27,15 @@ export const ItemWrapper = styled.div`
   .album-info {
     font-size: 12px;
     width: 100px;
+    cursor: pointer;
     .name {
       color: #000;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
+      ${props => props.theme.mixin.textNoWrap};
     }
 
     .artist {
-      color: #666;
+        color: #666;
+        ${props => props.theme.mixin.textNoWrap};
     }
   }
 `

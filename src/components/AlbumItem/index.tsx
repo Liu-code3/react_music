@@ -14,11 +14,11 @@ const AlbumItem: FC<IProps> = (props) => {
     <ItemWrapper>
       <div className="album-image">
         <img src={getImageSize(itemData.picUrl, 120)} alt="" />
-        <a className="cover sprite_cover">{itemData.name}</a>
+        <a className="cover">{itemData.name}</a>
       </div>
       <div className="album-info">
-        <div className="name">{itemData.name}</div>
-        <div className="artist">{itemData.artist.name}</div>
+        <div className="name" title={itemData.name}>{itemData.name}</div>
+        <div className="artist" title={itemData.artist.name}>{itemData.artist.name}</div>
       </div>
     </ItemWrapper>
   )

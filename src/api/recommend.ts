@@ -8,8 +8,8 @@ function getHotRecommend() {
   return requset.get('/personalized')
 }
 
-function getNewAlbum(offset = 0, limit = 10) {
-  return requset.get('/top/album', { params: { offset, limit } })
+function getNewAlbum() {
+  return requset.get('/album/newest')
 }
 
 export {

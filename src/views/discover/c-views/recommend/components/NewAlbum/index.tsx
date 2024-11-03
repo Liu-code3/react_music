@@ -38,7 +38,7 @@ const NewAlbum: FC<IProps> = () => {
             })}
           </Carousel>
         </div>
-        <div className="arrow arrow-right sprite_02" onClick={() => albumRef.current?.next}></div>
+        <div className="arrow arrow-right sprite_02" onClick={() => albumRef.current?.next()}></div>
       </div>
     </AlbumWrapper>
   )
