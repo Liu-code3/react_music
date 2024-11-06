@@ -4,8 +4,10 @@ import { fetchRankingDataAction, fetchRecommendDataAction } from '@/store/module
 import { memo, useEffect } from 'react'
 import HotRecommend from './components/HotRecommend'
 import NewAlbum from './components/NewAlbum'
+import SettleSinger from './components/SettleSinger'
 import TopBanner from './components/TopBanner'
 import TopRanking from './components/TopRanking'
+import UserLogin from './components/UserLogin'
 import { RecommendLeft, RecommendRight, RecommendSection } from './style.ts'
 
 const Recommend: FC = () => {
@@ -25,7 +27,10 @@ const Recommend: FC = () => {
           <NewAlbum />
           <TopRanking />
         </RecommendLeft>
-        <RecommendRight></RecommendRight>
+        <RecommendRight>
+          <UserLogin />
+          <SettleSinger />
+        </RecommendRight>
       </RecommendSection>
     </div>
   )
