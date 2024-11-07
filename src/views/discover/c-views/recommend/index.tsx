@@ -2,6 +2,7 @@ import type { FC } from 'react'
 import { useAppDispatch } from '@/hooks/app.ts'
 import { fetchRankingDataAction, fetchRecommendDataAction, fetchSettleSingerAction } from '@/store/modules/recommend.ts'
 import { memo, useEffect } from 'react'
+import HotAnchor from './components/HotAnchor'
 import HotRecommend from './components/HotRecommend'
 import NewAlbum from './components/NewAlbum'
 import SettleSinger from './components/SettleSinger'
@@ -31,6 +32,7 @@ const Recommend: FC = () => {
         <RecommendRight>
           <UserLogin />
           <SettleSinger />
+          <HotAnchor />
         </RecommendRight>
       </RecommendSection>
     </div>
