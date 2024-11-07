@@ -1,6 +1,6 @@
 import type { FC } from 'react'
 import { useAppDispatch } from '@/hooks/app.ts'
-import { fetchRankingDataAction, fetchRecommendDataAction } from '@/store/modules/recommend.ts'
+import { fetchRankingDataAction, fetchRecommendDataAction, fetchSettleSingerAction } from '@/store/modules/recommend.ts'
 import { memo, useEffect } from 'react'
 import HotRecommend from './components/HotRecommend'
 import NewAlbum from './components/NewAlbum'
@@ -16,6 +16,7 @@ const Recommend: FC = () => {
   useEffect(() => {
     dispatch(fetchRecommendDataAction())
     dispatch(fetchRankingDataAction())
+    dispatch(fetchSettleSingerAction())
   }, [])
 
   return (

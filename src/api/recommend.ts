@@ -16,7 +16,12 @@ function getPlayListDetail(id: number) {
   return requset.get('/playlist/detail', { params: { id } })
 }
 
+function getArtistList(cat: number, limit: number) {
+  return requset.get('/artist/list', { params: { cat, limit } })
+}
+
 export {
+  getArtistList,
   getHotRecommend,
   getNewAlbum,
   getPlayListDetail,
