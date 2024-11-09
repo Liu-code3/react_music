@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
+import playerReducer from './modules/player.ts'
 import recommendReducer from './modules/recommend.ts'
 
 const store = configureStore({
   reducer: {
-    recommend: recommendReducer
+    recommend: recommendReducer,
+    player: playerReducer
   }
 })
 

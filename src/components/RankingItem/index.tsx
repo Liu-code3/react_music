@@ -1,6 +1,8 @@
 import type { FC, ReactNode } from 'react'
+import { changeCurrentSongAction } from '@/store/modules/player.ts'
 import { getImageSize } from '@/utils/handleImgUrl.ts'
 import { memo } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ItemWrapper } from './style.ts'
 
@@ -12,6 +14,11 @@ interface IProps {
 const RankingItem: FC<IProps> = (props) => {
   const { itemData } = props
   const { tracks = [] } = itemData || {}
+
+  const dispatch = useDispatch()
+  function handlePlayClick(id: number) {
+    dispatch(changeCurrentSongAction(id))
+  }
 
   return (
     <ItemWrapper>
@@ -36,7 +43,7 @@ const RankingItem: FC<IProps> = (props) => {
               <div className="info">
                 <span className="name">{item.name}</span>
                 <div className="operate show">
-                  <button className="btn sprite_02 play"></button>
+                  <button className="btn sprite_02 play" onClick={() => handlePlayClick(item.id)}></button>
                   <button className="btn sprite_icon2 addto"></button>
                   <button className="btn sprite_02 favor"></button>
                 </div>
